@@ -1,70 +1,198 @@
-# Getting Started with Create React App
+# 🛒 React Shop Exam – Proyecto Final (IPLACEX)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto corresponde al **examen final de la asignatura Programación de Componentes**.  
+Incluye el desarrollo de una aplicación construida con **React**, **Firebase**, **Bootstrap**,  
+y un despliegue para **web** (Netlify) y **móvil (APK)** usando **Cordova**.
 
-## Available Scripts
+El objetivo principal es demostrar el uso de componentes, props, state, comunicación entre componentes, validaciones, servicios en la nube y la generación de un build móvil.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🚀 Funcionalidades Principales
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### ✅ 1. **Tienda con React**
+- Lista de productos (Laptop, Audífonos, Teclado, Mouse).
+- Componente padre e hijo (ProductList y ProductItem).
+- Comunicación padre → hijo mediante props.
+- Comunicación hijo → padre mediante callback.
+- Carrito funcional usando **state** y `this.setState`.
+- Cálculo automático del total y cantidad.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### ✅ 2. **Formulario + Validaciones + Firestore**
+- Formulario creado con React.
+- Validaciones manuales (nombre, email, mensaje).
+- Envío de datos a **Firebase Firestore**.
+- Registro de fecha automáticamente.
 
-### `npm test`
+### ✅ 3. **Autenticación con Google**
+- Se utiliza **Firebase Auth**.
+- Permite iniciar sesión con la cuenta de Google.
+- Muestra el usuario autenticado en pantalla.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### ✅ 4. **Subida de Fotos**
+- Uso de **Firebase Storage**.
+- Permite subir imágenes PNG/JPG.
+- Guarda cada imagen asociada al usuario logueado.
 
-### `npm run build`
+### ✅ 5. **Estilos con Bootstrap**
+- Cards, grid responsive, botones, espaciados.
+- Diseño limpio y simple.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### ✅ 6. **Build Web + APK Móvil**
+- Proyecto desplegado en **Netlify**.
+- Proyecto exportado como **APK** usando Apache Cordova:
+  - `cordova platform add android`
+  - `cordova build android`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 📁 Estructura del Proyecto
 
-### `npm run eject`
+react-shop-exam/
+│
+├── public/
+├── src/
+│ ├── components/
+│ │ ├── ProductList.js
+│ │ ├── ProductItem.js
+│ │ ├── CartSummary.js
+│ │ ├── Formulario.js
+│ │ ├── AuthGoogle.js
+│ │ ├── UploadPhoto.js
+│ ├── firebaseConfig.js
+│ ├── App.js
+│ ├── index.js
+│
+├── package.json
+└── README.md
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 🛠️ Tecnologías Utilizadas
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- **React**
+- **JavaScript ES6+**
+- **Bootstrap**
+- **Firebase**:
+  - Firestore Database
+  - Authentication (Google)
+  - Storage
+- **Cordova** (para APK móvil)
+- **Node.js**
+- **Netlify** (deploy web)
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🔧 Instalación y Ejecución
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 1️⃣ Clonar el repositorio
+git clone https://github.com/jeissonsde/react-shop-exam.git
 
-### Code Splitting
+cd react-shop-exam
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### 2️⃣ Instalar dependencias
+npm install
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## 🔥 Configuración de Firebase
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Crear un archivo:
 
-### Advanced Configuration
+src/firebaseConfig.js
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+Agregar:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```js
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { getStorage } from "firebase/storage";
 
-### `npm run build` fails to minify
+const firebaseConfig = {
+  apiKey: "TU_API_KEY",
+  authDomain: "TU_AUTH_DOMAIN",
+  projectId: "TU_PROJECT_ID",
+  storageBucket: "TU_STORAGE_BUCKET",
+  messagingSenderId: "TU_SENDER_ID",
+  appId: "TU_APP_ID"
+};
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+const app = initializeApp(firebaseConfig);
+export const db = getFirestore(app);
+export const auth = getAuth(app);
+export const provider = new GoogleAuthProvider();
+export const storage = getStorage(app);
+
+📨 Envío de Datos a Firestore
+
+El formulario guarda datos así:
+
+await addDoc(collection(db, "contactos"), {
+  nombre,
+  email,
+  mensaje,
+  fecha: new Date().toISOString()
+});
+
+🖼️ Subida de Fotos a Storage
+
+Los archivos se guardan usando:
+
+uploadBytes(storageRef, archivo);
+
+📱 Creación del APK con Cordova
+1️⃣ Instalar Cordova
+npm install -g cordova
+
+2️⃣ Crear proyecto móvil
+cordova create mobileapp
+cd mobileapp
+cordova platform add android
+
+3️⃣ Copiar el build web dentro de www/
+npm run build
+copy build/* mobileapp/www/
+
+4️⃣ Compilar APK
+cordova build android
+
+
+APK generado en:
+
+platforms/android/app/build/outputs/apk/debug/app-debug.apk
+
+🌍 Deploy en Netlify
+
+Ir a https://netlify.com
+
+Crear cuenta
+
+"Add new site" → "Deploy"
+
+Conectar con GitHub
+
+Seleccionar el repositorio
+
+Configuración:
+
+build command: npm run build
+
+publish directory: build/
+
+Deploy automático
+
+👤 Autor
+
+Jeisson Díaz
+Estudiante la carrera de Analista Programador – IPLACEX
+Proyecto desarrollado como examen final del curso Programación de Componentes.
+
+📄 Licencia
+
+Libre uso académico y educativo.
+
+
